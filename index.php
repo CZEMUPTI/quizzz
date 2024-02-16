@@ -116,7 +116,7 @@ if (mysqli_num_rows($result) > 0) {
                 <button type='submit' name='selected_option' value='1' onclick="buttonClick('1')"><?php echo $row["odpowiedz1"]; ?></button>
                 <button type='submit' name='selected_option' value='2' onclick="buttonClick('2')"><?php echo $row["odpowiedz2"]; ?></button>
                 <button type='submit' name='selected_option' value='3' onclick="buttonClick('3')"><?php echo $row["odpowiedz3"]; ?></button>
-                <button type='submit' name='selected_option' value='4' onclick="buttonClick('4')"><?php echo $row["odpowiedz4"]; ?></button>
+
             </form>
         </div>
         <?php
