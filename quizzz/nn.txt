@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<?php
+   include 'lacz.php';
+   $conn = mysqli_connect($servername, $username, $password, $dbname);
+   if(isset($_POST['selected_option']) && isset($_POST['correct_answer'])){
+    $selected_option = $_POST['selected_option'];
+    $correct_answer = $_POST['correct_answer'];
+    $result_text = ($selected_option == $correct_answer) ? true : false;
+
+    if ($result_text) {
+        $sql ="UPDATE `zdobytepunkty` SET `punkty` = `punkty` + 1;";
+        mysqli_query($conn, $sql);
+        goto aaa;
+    } else{
+        echo "Niepoprawny odpowiedz! Spróbuj jeszcze raz.";
+    }
+}
+
+
+$sql = "SELECT * FROM pytania;";
+$result = mysqli_query($conn, $sql);
+aaa:
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+        <div class='card'>
+            <h2><?php echo $row["pytanie"]; ?></h2>
+            <h5><?php echo $row["odpowiedz1"]; ?></h5>
+            <div class='card-content'>
+                <p><?php echo $row["odpowiedz2"]; ?></p>
+                <p><?php echo $row["odpowiedz3"]; ?></p>
+                <p><?php echo $row["odpowiedz4"]; ?></p>
+            </div>
+            <form action='' method='post'>
+                <input type='hidden' name='correct_answer' value='<?php echo $row["dobraodpowiedz"]; ?>'>
+                <button type='submit' name='selected_option' value='1'>odp1</button>
+                <button type='submit' name='selected_option' value='2'>odp2</button>
+                <button type='submit' name='selected_option' value='3'>odp3</button>
+                <button type='submit' name='selected_option' value='4'>odp4</button>
+            </form>
+        </div>
+        break;
+        <?php
+    }
+}
+
+mysqli_close($conn);
+
+?>
+<form action="wynik.php" method="post">
+    <button type="submit">pokaż wyniki</button>
+</body>
+</html>
