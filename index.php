@@ -41,7 +41,30 @@
 </head>
 <body>
 <h1>Witaj na quizie!</h1>
+<div id="clock" onclick="startCountdown()">
+        Kliknij, aby rozpocząć odliczanie do 1 minuty
+    </div>
+
+    <script>
+         function startCountdown() {
+            var timeLeft = 10;
+            var clockDiv = document.getElementById('clock');
+            clockDiv.innerHTML = "Pozostały czas: " + timeLeft + " sekund";
+
+            var countdown = setInterval(function() {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    window.location.href = 'wynik.php';
+                } else {
+                    clockDiv.innerHTML = "Pozostały czas: " + timeLeft + " sekund";
+                }
+            }, 1000);
+        }
+        
+    </script>
 <?php
+$a=3;
    include 'lacz.php';
    $conn = mysqli_connect($servername, $username, $password, $dbname);
    if(isset($_POST['selected_option']) && isset($_POST['correct_answer'])){
@@ -51,10 +74,11 @@
 
     if ($result_text) {
         $sql ="UPDATE `zdobytepunkty` SET `punkty` = `punkty` + 1;";
-
+           $a--;
         mysqli_query($conn, $sql);
     } else{
         echo "Niepoprawny odpowiedz! Spróbuj jeszcze raz.";
+        $a--;
     }
 }
 
@@ -82,7 +106,11 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 mysqli_close($conn);
+if($a){
 
+}else{
+    echo "niee";
+}
 ?>
 <form action="wynik.php" method="post">
     <button type="submit">pokaż wyniki</button>
