@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 15 Lut 2024, 14:04
+-- Czas generowania: 20 Lut 2024, 16:03
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `quiz`
 --
+
+-- --------------------------------------------------------
 
 -- --------------------------------------------------------
 
@@ -67,7 +69,7 @@ CREATE TABLE `zdobytepunkty` (
 --
 
 INSERT INTO `zdobytepunkty` (`punkty`) VALUES
-(41);
+(15);
 
 --
 -- Indeksy dla zrzutów tabel

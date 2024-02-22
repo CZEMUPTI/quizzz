@@ -42,49 +42,53 @@
 <body onload="startCountdown()">
 <h1>Witaj na quizie!</h1>
 <div id="clock">
-  
+        
     </div>
 
     <script>
-         function startCountdown() {
-            var timeLeft = 10;
-            var clockDiv = document.getElementById('clock');
-            clockDiv.innerHTML = "Pozostały czas: " + timeLeft + " sekund";
-
-            var countdown = setInterval(function() {
-                timeLeft--;
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    window.location.href = 'wynik.php';
-                } else {
-                    clockDiv.innerHTML = "Pozostały czas: " + timeLeft + " sekund";
-                }
-            }, 1000);
-        }
+    function startCountdown() {
+        var timeLeft = 600;
+        var clockDiv = document.getElementById('clock');
         
-    </script>
+        var countdown = setInterval(function() {
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
+
+            var displayText = "Pozostały czas: ";
+            if (minutes < 10) displayText += "0";
+            displayText += minutes + ":";
+            if (seconds < 10) displayText += "0";
+            displayText += seconds + " minut";
+
+            clockDiv.innerHTML = displayText;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                window.location.href = 'wynik.php';
+            } else {
+                timeLeft--;
+            }
+        }, 1000);
+    }
+</script>
+
 <?php
    include 'lacz.php';
-   $ile = $_POST['ile'];
-   if($ile==8){
-    header(location:"wynik.php" );
-}
    $conn = mysqli_connect($servername, $username, $password, $dbname);
    if(isset($_POST['selected_option']) && isset($_POST['correct_answer'])){
     $selected_option = $_POST['selected_option'];
     $correct_answer = $_POST['correct_answer'];
-    
     $result_text = ($selected_option == $correct_answer) ? true : false;
-
+    $id_pytania = $_POST['id_pytania'];
     if ($result_text) {
         $sql ="UPDATE `zdobytepunkty` SET `punkty` = `punkty` + 1;";
         mysqli_query($conn, $sql);
-        
-        $sql ="UPDATE `klikniecia` SET `ile`=`ile`+1";
-        mysqli_query($conn, $sql);
-    }else{
-        $sql ="UPDATE `klikniecia` SET `ile`=`ile`+1";
-        mysqli_query($conn, $sql);
+        $sql = "DELETE FROM pytania WHERE id = $id_pytania";
+       mysqli_query($conn, $sql);
+    }
+     else{
+        $sql = "DELETE FROM pytania WHERE id = $id_pytania";
+       mysqli_query($conn, $sql);
     }
    
 }
@@ -101,6 +105,7 @@ if (mysqli_num_rows($result) > 0) {
             <h2><?php echo $row["pytanie"]; ?></h2>
             <form action='' method='post'>
                 <input type='hidden' name='correct_answer' value='<?php echo $row["dobraodpowiedz"]; ?>'>
+                <input type='hidden' name='id_pytania' value='<?php echo $row["id"]; ?>'>
                 <button type='submit' name='selected_option' value='1'><?php echo $row["odpowiedz1"]; ?></button>
                 <button type='submit' name='selected_option' value='2'><?php echo $row["odpowiedz2"]; ?></button>
                 <button type='submit' name='selected_option' value='3'><?php echo $row["odpowiedz3"]; ?></button>
@@ -111,23 +116,12 @@ if (mysqli_num_rows($result) > 0) {
 
     }
 }
-$sql = "SELECT * FROM `klikniecia`";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-   
-    while ($row = mysqli_fetch_assoc($result)) {
-       
-        ?>
-      <input type='hidden' name='ile' value='<?php echo $row["ile"]; ?>'>
-        <?php
-
-    }
-}
 mysqli_close($conn);
-
 ?>
 <form action="wynik.php" method="post">
-    <button type="submit">pokaż wyniki</button>
+   <center>
+   <button type="submit">pokaż wyniki</button>
+   </center>
 </form>
 </body>
 </html>
