@@ -1,36 +1,7 @@
-body {
+body{
     text-align: center;
-    color: #fff;
+    padding-top: 300px;
+    font-size: 200px;
+    color: blue;
     background-image: url(https://i.pinimg.com/originals/b0/14/97/b01497c6d71de2dc91627a84cb2a83e3.gif);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-a{
-    color: #fff;
-    border: 1px solid white;
-    border-radius: 10px;
-    padding: 10px;
-    
-    text-decoration: none;
-    font-size: 25px;
-}
-.container {
-    width: 50%;
-    border-radius: 10px;
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-h1 {
-    font-family: 'Arial', sans-serif;
-    text-decoration: underline;
-    text-decoration-color: #00FFFF;
-    text-decoration-thickness: 4px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: text-decoration-color 0.3s, transform 0.3s;
 }

@@ -5,59 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Strona główna</title>
     <style>
-body {
-    background-color: #f0f0f0; 
-    color: #333; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
-}
-
-.container {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.container img {
-    max-width: 300px;
-    max-height: 300px;
-    margin-bottom: 20px;
-}
-
-.button {
-    display: inline-block;
-    padding: 15px 40px;
-    background-color: #006400; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    outline: none;
-}
-
-.button:hover {
-    background-color: #004000;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
+        body {
+            background-color: #006400; 
+            color: white; 
+            font-family: Arial, sans-serif; 
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        .container img {
+            max-width: 300px;
+            max-height: 300px;
+            margin-bottom: 20px;
+        }
+       
+        .button {
+            display: inline-block;
+            padding: 30px 100px;
+            background-color: white; 
+            color: #006400; 
+            border: 2px solid #006400; 
+            border-radius: 5px; 
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button:hover {
+            background-color: black;
+            color: white;
+        }
+      
     </style>
 </head>
 <body>
