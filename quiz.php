@@ -47,7 +47,7 @@
 
     <script>
          function startCountdown() {
-            var timeLeft = 60;
+            var timeLeft = 10;
             var clockDiv = document.getElementById('clock');
             clockDiv.innerHTML = "Pozostały czas: " + timeLeft + " sekund";
 

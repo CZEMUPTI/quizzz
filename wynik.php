@@ -15,10 +15,11 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "Zdobyte punkty: "."<br>";
+      echo "<div class='container'>";
+        echo "<h1>Zdobyte punkty: </h1>"."<br>";
       echo $row['punkty']."<br>";
       echo "<a href='quiz.php'>Wynik</a>";
-
+      echo "</div>";
     }
 }
 // Zapytanie SQL do usuwania tabeli
