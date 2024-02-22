@@ -23,6 +23,22 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+--
+-- Struktura tabeli dla tabeli `klikniecia`
+--
+
+CREATE TABLE `klikniecia` (
+  `ilosc` int(11) NOT NULL,
+  `max` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `klikniecia`
+--
+
+INSERT INTO `klikniecia` (`ilosc`, `max`) VALUES
+(31, 9);
+
 -- --------------------------------------------------------
 
 --
