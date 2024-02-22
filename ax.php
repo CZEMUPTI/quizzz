@@ -44,7 +44,7 @@
     <div id="clock" onclick="startCountdown()">Kliknij, aby rozpocząć odliczanie do 1 minuty</div>
 
     <script>
-        var countdownStarted = false;
+        var countdownStarted = false; // Flaga oznaczająca, czy odliczanie zostało już uruchomione
 
         function startCountdown() {
             if (!countdownStarted) {
@@ -61,7 +61,7 @@
                         clockDiv.innerHTML = "Pozostały czas: " + timeLeft + " sekund";
                     }
                 }, 1000);
-                countdownStarted = true; 
+                countdownStarted = true; // Ustawiamy flagę na true, aby oznaczyć, że odliczanie zostało uruchomione
             }
         }
 
@@ -102,12 +102,12 @@
             ?>
             <div class='card'>
                 <h2><?php echo $row["pytanie"]; ?></h2>
-                <form action='' method='post'>
+                <form>
                     <input type='hidden' name='correct_answer' value='<?php echo $row["dobraodpowiedz"]; ?>'>
-                    <button type='submit' name='selected_option' value='1'><?php echo $row["odpowiedz1"]; ?></button>
-                    <button type='submit' name='selected_option' value='2'><?php echo $row["odpowiedz2"]; ?></button>
-                    <button type='submit' name='selected_option' value='3'><?php echo $row["odpowiedz3"]; ?></button>
-                    <button type='submit' name='selected_option' value='4'><?php echo $row["odpowiedz4"]; ?></button>
+                    <button type='button' onclick='sendAnswer(1, <?php echo $row["dobraodpowiedz"]; ?>)'><?php echo $row["odpowiedz1"]; ?></button>
+                    <button type='button' onclick='sendAnswer(2, <?php echo $row["dobraodpowiedz"]; ?>)'><?php echo $row["odpowiedz2"]; ?></button>
+                    <button type='button' onclick='sendAnswer(3, <?php echo $row["dobraodpowiedz"]; ?>)'><?php echo $row["odpowiedz3"]; ?></button>
+                    <button type='button' onclick='sendAnswer(4, <?php echo $row["dobraodpowiedz"]; ?>)'><?php echo $row["odpowiedz4"]; ?></button>
                 </form>
             </div>
             <?php
@@ -115,10 +115,6 @@
     }
 
     mysqli_close($conn);
-    
     ?>
-    <form action="wynik.php" method="post">
-    <button type="submit">pokaż wyniki</button>
-</form>
 </body>
 </html>
